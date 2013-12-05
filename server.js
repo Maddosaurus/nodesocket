@@ -1,7 +1,11 @@
-var app = require('express')()
+//var app = require('express')()
+var express = require('express')
+	, app = express()
 	, server = require('http').createServer(app)
-	, io = require('socket.io').listen(server);
-	camiface	 = require('./routes/camiface');
+	//, server = require('http').createServer(express)
+	, io = require('socket.io').listen(server)
+	, camiface	 = require('./routes/camiface')
+	, path = require('path');
 
 server.listen(5885);
 
@@ -17,7 +21,9 @@ app.get('/', function (req, res) {
 	res.end();
 });
 
-app.get('/cam', camiface.getCamera);
+//app.get('/^\/uploads\/([a-f0-9]+)\/(.*)$/', camiface.getCamera);
+app.get('/uploads/529f97fa6ff48dc0a0c2e646/xxx.jpg', camiface.getCamera);
+
 
 io.configure('production', function(){
 	console.log("set config for production");
@@ -45,7 +51,7 @@ io.sockets.on('connection', function (socket) {
 
 	socket.on('request', function (data) {
 		console.log(data);
-		socket.emit('response', { result: 'harr' });
+		socket.emit('response', camiface.getCamera);
 	});
 
 });
