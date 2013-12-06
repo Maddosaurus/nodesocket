@@ -1,8 +1,6 @@
-//var app = require('express')()
 var express = require('express')
 	, app = express()
 	, server = require('http').createServer(app)
-	//, server = require('http').createServer(express)
 	, io = require('socket.io').listen(server)
 	, camiface	 = require('./routes/camiface')
 	, path = require('path');
@@ -21,9 +19,7 @@ app.get('/', function (req, res) {
 	res.end();
 });
 
-//app.get('/^\/uploads\/([a-f0-9]+)\/(.*)$/', camiface.getCamera);
-app.get('/uploads/529f97fa6ff48dc0a0c2e646/xxx.jpg', camiface.getCamera);
-
+app.get(/^\/uploads\/([a-f0-9]+)\/(.*)$/, camiface.getCamera);
 
 io.configure('production', function(){
 	console.log("set config for production");
