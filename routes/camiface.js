@@ -35,7 +35,6 @@ exports.getCamera = function(req,res) {
 	var filename  = req.params[1];
 
 	res.set('Content-type', mime.lookup(filename));
-	console.dir("AAA");
 
 	gfs
 	 .createReadStream({ _id: id })
