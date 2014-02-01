@@ -23,6 +23,7 @@ var gfs;
 //var db = new mongo.Db('grDB', new mongo.Server("192.168.1.119", 27017));
 var db = new mongo.Db('grDB', new mongo.Server(sysip, 27017));
 
+
 db.open(function(err) {
 	if(err) return handleError(err);
 	gfs = Grid(db, mongo);
