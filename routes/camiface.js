@@ -20,7 +20,6 @@ var mongo = require('mongodb');
 var Grid = require('gridfs-stream');
 var gfs;
 
-//var db = new mongo.Db('grDB', new mongo.Server("192.168.1.119", 27017));
 var db = new mongo.Db('grDB', new mongo.Server(sysip, 27017));
 
 
